@@ -1,10 +1,9 @@
 from models.deck import Deck
-import pygame
 
 def main():
     deck = Deck()
-    for card in deck.cards:
-        print(card.get_card_string()) 
+    for i in range(7): 
+        print(deck.get_top_card().get_card_string())
 
 if __name__ == "__main__":
     main()
