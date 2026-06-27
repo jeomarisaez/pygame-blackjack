@@ -1,9 +1,8 @@
 from models.deck import Deck
+from core.game import Game
 
 def main():
-    deck = Deck()
-    for i in range(7): 
-        print(deck.get_top_card().get_card_string())
+    game = Game()
 
 if __name__ == "__main__":
     main()
