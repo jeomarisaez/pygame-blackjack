@@ -75,6 +75,8 @@ class Game:
 
         if dealer.hand.get_value > 21:
             print("Dealer busted!")
+
+        self.check_win()
             
         self.game_over = True
 
@@ -102,3 +104,12 @@ class Game:
 
     def stand(self, player):
         print(f"{player.name} decides to stand.")
+
+    def check_win(self):
+        highest_score = 0
+        for player in self.player_list:
+            if highest_score < player.hand.get_value:
+                current_winner = player.name
+                highest_score = player.hand.get_value
+        return current_winner
+
