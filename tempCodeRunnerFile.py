@@ -3,8 +3,8 @@ import pygame
 
 def main():
     deck = Deck()
-    for card in deck.cards:
-        print(card.get_card_string()) 
+    deck.create_deck()
+    print(deck.deck_list)
 
 if __name__ == "__main__":
     main()
