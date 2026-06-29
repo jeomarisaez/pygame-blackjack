@@ -48,7 +48,10 @@ class GameUI:
         y = 100
 
         for card in cards:
-            self.draw_card(card, x, y)
+            if card.hidden:
+                self.draw_card_back(x, y)
+            else:
+                self.draw_card(card, x, y)
 
             x += 70
 
@@ -93,6 +96,14 @@ class GameUI:
         # stamp rank onto screen
         surface.blit(rank_surf, bottom_right)
         surface.blit(rank_surf, top_left)
+
+    def draw_card_back(self, x, y, width=60, height=90):
+        surface = self.screen
+
+        rect = pygame.Rect(x, y, width, height)
+
+        pygame.draw.rect(surface, self.RED, rect, border_radius=12)  
+        pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)  
 
     def draw_button():
         pass
