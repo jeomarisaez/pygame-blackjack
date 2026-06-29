@@ -59,14 +59,6 @@ class GameUI:
         pygame.quit()
         # sys.exit()
 
-    # def display_card(self, suit, rank, x, y, width=60, height=90):
-
-    #     surface = self.screen
-
-    #     rect = pygame.Rect(x, y, width, height)
-
-    #     pygame.draw.rect(surface, self.SLOT_COLOR rect, border_radius=12)  
-
     def display_hand_slot(self, y, width=500, height=120):
         slot_x_offset = width / 2
         slot_y_offset = height / 2
