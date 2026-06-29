@@ -40,13 +40,7 @@ class GameUI:
 
         for card in cards:
 
-            self.draw_card(
-                card.suit,
-                card.rank,
-                x,
-                y
-            )
-
+            self.draw_card(card, x, y)
             x += 70
 
     def draw_dealer_hand(self, cards):
@@ -54,13 +48,7 @@ class GameUI:
         y = 100
 
         for card in cards:
-
-            self.draw_card(
-                card.suit,
-                card.rank,
-                x,
-                y
-            )
+            self.draw_card(card, x, y)
 
             x += 70
 
@@ -75,42 +63,36 @@ class GameUI:
         # draw the bg filled card slots
         pygame.draw.rect(surface, self.SLOT_COLOR, rect, border_radius=12)  
         
-    def draw_card(self, suit, rank, x, y, width=60, height=90):
+    def draw_card(self, card, x, y, width=60, height=90):
         surface = self.screen
 
         rect = pygame.Rect(x, y, width, height)
-        # draw the bg filled card
+
         pygame.draw.rect(surface, self.WHITE, rect, border_radius=12)  
-        # draw the outline uptop
-        pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)   
+        pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)  
 
-        # makes a font that's scaled to card height for the suit
-        font = pygame.font.SysFont("Arial", height // 3)
-        # render suit as surface
+        suit = card.suit
+        rank = card.rank 
+
+
         if suit in [suit.HEARTS, suit.DIAMONDS]:
-            suit_surf = self.card_font.render(suit.value, True, self.RED)
+            color = self.RED
         else:
-            suit_surf = self.card_font.render(suit.value, True, self.BLACK)
-        # position it centered
-        suit_rect = suit_surf.get_rect(centerx=rect.centerx, centery=rect.centery)
-        # stamp the suit onto screen
-        surface.blit(suit_surf, suit_rect)
+            color = self.BLACK
+        
+        suit_surf = self.card_font.render(suit.value, True, color)
+        suit_rect = suit_surf.get_rect(center=rect.center)
 
-        # makes a font that's scaled to card height for the rank
-        small_font = pygame.font.SysFont("Arial", height // 5)
-        # render rank as surface
-        if suit in [suit.HEARTS, suit.DIAMONDS]:
-            rank_surf = self.corner_font.render(rank.value, True, self.RED)
-        else: 
-            rank_surf = self.corner_font.render(rank.value, True, self.BLACK)
-        # position it on the bottom right
-        rank_rect_top_left = rank_surf.get_rect(left=rect.left + 6, top=rect.top + 6)
-        # position it on the top left
-        rank_rect_bottom_right = rank_surf.get_rect(right=rect.right - 6, bottom=rect.bottom - 6)
+        surface.blit(suit_surf, suit_rect)
+        
+        rank_surf = self.corner_font.render(rank.value, True, color)
+
+        top_left = rank_surf.get_rect(left=rect.left + 6, top=rect.top + 6)
+        bottom_right = rank_surf.get_rect(right=rect.right - 6, bottom=rect.bottom - 6)
         
         # stamp rank onto screen
-        surface.blit(rank_surf, rank_rect_bottom_right)
-        surface.blit(rank_surf, rank_rect_top_left)
+        surface.blit(rank_surf, bottom_right)
+        surface.blit(rank_surf, top_left)
 
     def draw_button():
         pass
