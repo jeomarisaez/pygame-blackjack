@@ -2,6 +2,16 @@ import pygame
 import sys
 
 class GameUI:
+
+    # colors
+    BACKGROUND = (40, 40, 50)
+    SLOT_COLOR = (100, 100, 120)
+    WHITE = (255,255,255)
+    BLACK = (0,0,0)
+    RED = (255,0,0)
+
+    CARD_SIZE = (60, 90)
+
     def __init__(self):
         pygame.init()
         pygame.font.init()
@@ -12,9 +22,8 @@ class GameUI:
         self.running = True
 
         # dimensions
-        self.card_width = 60
-        self.card_height = 90
-        
+        self.card_width, self.card_height = self.CARD_SIZE
+
         self.screen_width = self.screen.get_width()   
         self.screen_height = self.screen.get_height()  
         
@@ -24,16 +33,24 @@ class GameUI:
         self.screen_center_x = self.screen_width * 0.5
         self.screen_center_y = self.screen_height * 0.5
 
+        # fonts
+        self.card_font = pygame.font.SysFont("Arial", 30)
+        self.corner_font = pygame.font.SysFont("Arial", 18)
+
         
     def run(self):
+        surface = self.screen
+
         while self.running:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+
             
-            self.screen.fill((40, 40, 50))
+            self.screen.fill(self.BACKGROUND)
             # creates cards
-            self.display_hand_slot()
+            self.display_hand_slot(self.screen_center_y * 1.5)
+            self.display_hand_slot(self.screen_center_y * 0.5)
             self.show_card("A", 1, (self.screen_center_x - self.card_x_offset) - 50, self.screen_center_y * 1.5 - self.card_y_offset) 
             self.show_card("B", 2, (self.screen_center_x - self.card_x_offset) + 50, self.screen_center_y * 1.5 - self.card_y_offset)
             # updates screen so that all blipped elements show
@@ -42,23 +59,23 @@ class GameUI:
         pygame.quit()
         # sys.exit()
 
-    def display_card(self, suit, rank, x, y, width=60, height=90):
+    # def display_card(self, suit, rank, x, y, width=60, height=90):
 
-        surface = self.screen
+    #     surface = self.screen
 
-        rect = pygame.Rect(x, y, width, height)
+    #     rect = pygame.Rect(x, y, width, height)
 
-        pygame.draw.rect(surface, (224, 224, 224), rect, border_radius=12)  
+    #     pygame.draw.rect(surface, self.SLOT_COLOR rect, border_radius=12)  
 
-    def display_hand_slot(self, width=500, height=120):
+    def display_hand_slot(self, y, width=500, height=120):
         slot_x_offset = width / 2
         slot_y_offset = height / 2
 
         surface = self.screen
 
-        rect = pygame.Rect(self.screen_center_x - slot_x_offset, self.screen_center_y * 1.5 - slot_y_offset, width, height)
+        rect = pygame.Rect(self.screen_center_x - slot_x_offset, y - slot_y_offset, width, height)
         # draw the bg filled card slots
-        pygame.draw.rect(surface, (100, 100, 120), rect, border_radius=12)  
+        pygame.draw.rect(surface, self.SLOT_COLOR, rect, border_radius=12)  
 
         
     def show_card(self, letter, number, x, y, width=60, height=90):
@@ -67,14 +84,14 @@ class GameUI:
 
         rect = pygame.Rect(x, y, width, height)
         # draw the bg filled card
-        pygame.draw.rect(surface, (255, 255, 255), rect, border_radius=12)  
+        pygame.draw.rect(surface, self.WHITE, rect, border_radius=12)  
         # draw the outline uptop
-        pygame.draw.rect(surface, (0, 0, 0), rect, 2, border_radius=12)   
+        pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)   
 
         # makes a font that's scaled to card height for the suit
         font = pygame.font.SysFont("Arial", height // 3)
         # render letter as surface
-        letter_surf = font.render(letter, True, (255, 0, 0))
+        letter_surf = self.card_font.render(letter, True, self.RED)
         # position it centered
         letter_rect = letter_surf.get_rect(centerx=rect.centerx, centery=rect.centery)
         # stamp the letter onto screen
@@ -83,7 +100,7 @@ class GameUI:
         # makes a font that's scaled to card height for the rank
         small_font = pygame.font.SysFont("Arial", height // 5)
         # render number as surface
-        num_surf = small_font.render(str(number), True, (255, 0, 0))
+        num_surf = self.corner_font.render(str(number), True, self.RED)
         # position it on the bottom right
         num_rect_top_left = num_surf.get_rect(left=rect.left + 6, top=rect.top + 6)
         # position it on the top left
