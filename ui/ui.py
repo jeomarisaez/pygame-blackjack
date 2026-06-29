@@ -1,10 +1,7 @@
 import pygame
 import sys
-
 class GameUI:
-
     # colors
-    BACKGROUND = (40, 40, 50)
     SLOT_COLOR = (100, 100, 120)
     WHITE = (255,255,255)
     BLACK = (0,0,0)
@@ -12,16 +9,9 @@ class GameUI:
 
     CARD_SIZE = (60, 90)
 
-    def __init__(self):
-        pygame.init()
-        pygame.font.init()
-
-        self.screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption("Pygame UI Manager")
-        self.clock = pygame.time.Clock()
-        self.running = True
-
+    def __init__(self, screen):
         # dimensions
+        self.screen = screen
         self.card_width, self.card_height = self.CARD_SIZE
 
         self.screen_width = self.screen.get_width()   
@@ -37,7 +27,6 @@ class GameUI:
         self.card_font = pygame.font.SysFont("Arial", 30)
         self.corner_font = pygame.font.SysFont("Arial", 18)
 
-        
     def run(self):
         surface = self.screen
 
@@ -49,17 +38,16 @@ class GameUI:
             
             self.screen.fill(self.BACKGROUND)
             # creates cards
-            self.display_hand_slot(self.screen_center_y * 1.5)
-            self.display_hand_slot(self.screen_center_y * 0.5)
-            self.show_card("A", 1, (self.screen_center_x - self.card_x_offset) - 50, self.screen_center_y * 1.5 - self.card_y_offset) 
-            self.show_card("B", 2, (self.screen_center_x - self.card_x_offset) + 50, self.screen_center_y * 1.5 - self.card_y_offset)
+            self.draw_hand_slot(self.screen_center_y * 1.5)
+            self.draw_hand_slot(self.screen_center_y * 0.5)
+            self.draw_card("A", 1, (self.screen.center_x - self.card_x_offset) - 50, self.screen_center_y * 1.5 - self.card_y_offset) 
+            self.draw_card("B", 2, (self.screen.center_x - self.card_x_offset) + 50, self.screen_center_y * 1.5 - self.card_y_offset)
             # updates screen so that all blipped elements show
             pygame.display.flip()
-
         pygame.quit()
         # sys.exit()
 
-    def display_hand_slot(self, y, width=500, height=120):
+    def draw_hand_slot(self, y, width=500, height=120):
         slot_x_offset = width / 2
         slot_y_offset = height / 2
 
@@ -68,10 +56,8 @@ class GameUI:
         rect = pygame.Rect(self.screen_center_x - slot_x_offset, y - slot_y_offset, width, height)
         # draw the bg filled card slots
         pygame.draw.rect(surface, self.SLOT_COLOR, rect, border_radius=12)  
-
         
-    def show_card(self, letter, number, x, y, width=60, height=90):
-
+    def draw_card(self, letter, number, x, y, width=60, height=90):
         surface = self.screen
 
         rect = pygame.Rect(x, y, width, height)
@@ -101,5 +87,9 @@ class GameUI:
         # stamp number onto screen
         surface.blit(num_surf, num_rect_bottom_right)
         surface.blit(num_surf, num_rect_top_left)
+        
+
+    def draw_button():
+        pass
 
         
