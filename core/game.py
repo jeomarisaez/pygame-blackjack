@@ -15,8 +15,8 @@ class Game:
 
         self.set_up_game()
 
-        while not self.game_over:
-            self.play_turn()
+        # while not self.game_over:
+        #     self.play_turn()
 
     def set_up_game(self):
         self.distribute_starting_cards()
