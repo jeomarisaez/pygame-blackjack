@@ -32,6 +32,9 @@ class GameManager:
             self.screen.fill(self.BACKGROUND)
 
             self.game_ui.draw(self.game)
+            self.game_ui.draw_button("HIT", 10, 10)
+            self.game_ui.draw_button("STAND", 110, 10)
+
             
             # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 1.5)
             # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 0.5)

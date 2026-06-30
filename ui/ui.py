@@ -7,6 +7,8 @@ class GameUI:
     WHITE = (255,255,255)
     BLACK = (0,0,0)
     RED = (255,0,0)
+    BLUE = (50,50,255)
+
 
     CARD_SIZE = (60, 90)
 
@@ -29,6 +31,8 @@ class GameUI:
         self.corner_font = pygame.font.SysFont("Arial", 18)
 
     def draw(self, game):
+        self.draw_hand_slot(100)
+        self.draw_hand_slot(450)
         self.draw_player_hand(game.player.hand.cards)
         self.draw_dealer_hand(game.dealer.hand.cards)
 
@@ -40,7 +44,7 @@ class GameUI:
 
         for card in cards:
 
-            self.draw_card(card, x, y)
+            self.draw_card(card, x - self.card_x_offset, y - self.card_y_offset)
             x += 70
 
     def draw_dealer_hand(self, cards):
@@ -49,9 +53,9 @@ class GameUI:
 
         for card in cards:
             if card.hidden:
-                self.draw_card_back(x, y)
+                self.draw_card_back(x - self.card_x_offset, y - self.card_y_offset)
             else:
-                self.draw_card(card, x, y)
+                self.draw_card(card, x - self.card_x_offset, y - self.card_y_offset)
 
             x += 70
 
@@ -105,7 +109,19 @@ class GameUI:
         pygame.draw.rect(surface, self.RED, rect, border_radius=12)  
         pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)  
 
-    def draw_button():
-        pass
+    def draw_button(self, text, x, y, width=100, height=50):
+        surface = self.screen
+
+        rect = pygame.Rect(x, y, width, height)
+
+        pygame.draw.rect(surface, self.BLUE, rect, border_radius=12)  
+        pygame.draw.rect(surface, self.BLACK, rect, 2, border_radius=12)  
+
+        text_surf = self.card_font.render(text, True, self.WHITE)
+        text_rect = text_surf.get_rect(center=rect.center)
+
+        surface.blit(text_surf, text_rect)
+
+
 
         
