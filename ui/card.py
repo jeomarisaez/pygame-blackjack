@@ -10,7 +10,6 @@ class CardUI:
     RED = (255,0,0)
     BLUE = (50,50,255)
 
-
     CARD_SIZE = (60, 90)
 
     def __init__(self, screen):

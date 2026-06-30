@@ -30,10 +30,10 @@ class GameManager:
                     self.running = False
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     if self.game_ui.buttonUI.clicked("hit", event.pos):
-                        # self.game.player.hit()
+                        self.game.hit(self.game.current_player)
                         print("hit pressed")
                     if self.game_ui.buttonUI.clicked("stand", event.pos):
-                        # self.game.player.stand()
+                        self.game.stand(self.game.current_player)
                         print("stand pressed")
 
 

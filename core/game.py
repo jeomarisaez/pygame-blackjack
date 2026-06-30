@@ -10,13 +10,15 @@ class Game:
         self.deck = Deck()
         self.player = Player()
         self.dealer = Dealer()
+
         self.player_list = [self.player, self.dealer]
         self.turn_manager = TurnManager(self.player_list)
 
-        self.set_up_game()
+        self.current_player = None
+        self.player_turn_active = False
 
-        # while not self.game_over:
-        #     self.play_turn()
+        self.set_up_game()
+        self.play_turn()
 
     def set_up_game(self):
         self.distribute_starting_cards()
@@ -29,40 +31,15 @@ class Game:
         self.print_hands(self.player.hand.cards)
     
     def play_turn(self):
-        current_player = self.turn_manager.start_turn()
+        self.current_player = self.turn_manager.start_turn()
 
         # dealer logic handler
-        if isinstance(current_player, Dealer):
-            self.handle_dealer_turn(current_player)
+        if isinstance(self.current_player, Dealer):
+            self.handle_dealer_turn(self.current_player)
             return
         
-        # turn_active = True
-
-        # while turn_active:
-        #     action = self.turn_manager.ask_choice()
-        #     match action:
-        #         case Choice.HIT:
-        #             self.hit(current_player)
-
-        #             current_value = current_player.hand.get_value 
-        #             print(f"Value: {current_value}")
-
-        #             self.print_hands(current_player.hand.cards)
-
-        #             if current_value > 21:
-        #                 print("You busted!")
-        #                 turn_active = False
-        #                 self.game_over = True
-
-
-        #         case Choice.STAND:
-        #             self.stand(current_player)
-        #             turn_active = False
-
-        # self.turn_manager.end_turn()
-
-        # while action is None:
-            
+        self.player_turn_active = True
+        
     
     def handle_dealer_turn(self, dealer):
         dealer.hand.cards[1].hidden = False
