@@ -29,8 +29,8 @@ class GameUI:
         self.cardUI.draw_hand_slot(450)
         self.cardUI.draw_hand(game.player.hand.cards, 250, 450)
         self.cardUI.draw_hand(game.dealer.hand.cards, 250, 100)
-        self.buttonUI.draw_button("HIT", 300, 550)
-        self.buttonUI.draw_button("STAND", 500, 550)
+        self.buttonUI.draw_button("hit", "HIT", 300, 550)
+        self.buttonUI.draw_button("stand", "STAND", 500, 550)
 
 
         

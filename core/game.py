@@ -36,30 +36,33 @@ class Game:
             self.handle_dealer_turn(current_player)
             return
         
-        turn_active = True
+        # turn_active = True
 
-        while turn_active:
-            action = self.turn_manager.ask_choice()
-            match action:
-                case Choice.HIT:
-                    self.hit(current_player)
+        # while turn_active:
+        #     action = self.turn_manager.ask_choice()
+        #     match action:
+        #         case Choice.HIT:
+        #             self.hit(current_player)
 
-                    current_value = current_player.hand.get_value 
-                    print(f"Value: {current_value}")
+        #             current_value = current_player.hand.get_value 
+        #             print(f"Value: {current_value}")
 
-                    self.print_hands(current_player.hand.cards)
+        #             self.print_hands(current_player.hand.cards)
 
-                    if current_value > 21:
-                        print("You busted!")
-                        turn_active = False
-                        self.game_over = True
+        #             if current_value > 21:
+        #                 print("You busted!")
+        #                 turn_active = False
+        #                 self.game_over = True
 
 
-                case Choice.STAND:
-                    self.stand(current_player)
-                    turn_active = False
+        #         case Choice.STAND:
+        #             self.stand(current_player)
+        #             turn_active = False
 
-        self.turn_manager.end_turn()
+        # self.turn_manager.end_turn()
+
+        # while action is None:
+            
     
     def handle_dealer_turn(self, dealer):
         dealer.hand.cards[1].hidden = False

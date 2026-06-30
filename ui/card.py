@@ -54,9 +54,9 @@ class CardUI:
             border_radius=12
         )
         
-    def draw_card(self, card, x, y, width=60, height=90):
+    def draw_card(self, card, x, y):
         # pygame does the center positioning itself
-        rect = pygame.Rect(0, 0, width, height)
+        rect = pygame.Rect(0, 0, *self.CARD_SIZE)
         rect.center = (x, y)
 
         pygame.draw.rect(self.screen, self.WHITE, rect, border_radius=12)  

@@ -28,6 +28,14 @@ class GameManager:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     self.running = False
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.game_ui.buttonUI.clicked("hit", event.pos):
+                        # self.game.player.hit()
+                        print("hit pressed")
+                    if self.game_ui.buttonUI.clicked("stand", event.pos):
+                        # self.game.player.stand()
+                        print("stand pressed")
+
 
             self.screen.fill(self.BACKGROUND)
 
