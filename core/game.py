@@ -86,6 +86,12 @@ class Game:
     def stand(self, player):
         print(f"{player.name} decides to stand.")
 
+        self.player_turn_active = False
+
+        self.turn_manager.end_turn()
+
+        self.play_turn()
+
     def check_win(self):
         highest_score = 0
         for player in self.player_list:
