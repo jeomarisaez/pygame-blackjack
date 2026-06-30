@@ -1,5 +1,5 @@
 from core.game_manager import GameManager
-from ui.ui import GameUI
+from ui.game_ui import GameUI
 
 def main():
     game_manager = GameManager()

@@ -19,15 +19,3 @@ class TurnManager:
 
         if self.turn_index >= len(self.players):
             self.turn_index = 0
-
-    def ask_choice(self):
-        while True:
-            choice = input("Type '1' to hit, '2' to stand: ").strip()
-            
-            match choice:
-                case "1":
-                    return Choice.HIT
-                case "2":
-                    return Choice.STAND
-                case _:
-                    print("Invalid input. Please try again.")

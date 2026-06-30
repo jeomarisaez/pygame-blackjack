@@ -81,11 +81,12 @@ class Game:
         self.game_over = True
 
     def distribute_starting_cards(self):
-        for i in range(5):
+        for i in range(2):
             self.give_card(self.player)
             self.give_card(self.dealer)
-        # self.dealer.hand.cards[1].hidden = True
-
+            if i > 0:
+                self.dealer.hand.cards[i].hidden = True
+        
     def give_card(self, player):
         player.hand.cards.append(self.deck.cards.pop()) 
 
