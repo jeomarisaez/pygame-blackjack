@@ -24,7 +24,7 @@ class TextUI:
 
         text = f"{player.name} Busted!"
         rect = pygame.Rect(0, 0, *self.COUNTER_SIZE)
-        rect.center = (screen_rect.centerx, screen_rect.centery)
+        rect.center = (screen_rect.centerx, screen_rect.centery - 50)
 
         text_surf = self.score_font.render(text, True, self.WHITE)
 

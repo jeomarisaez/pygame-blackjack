@@ -17,6 +17,7 @@ class Game:
         self.current_player = None
         self.player_turn_active = False
 
+    def start(self):
         self.set_up_game()
         self.play_turn()
 
@@ -47,7 +48,6 @@ class Game:
         print("Dealer reveals hand:")
         self.print_hands(dealer.hand.cards)
 
-        # basic dealer rules for optimal choices
         while dealer.hand.get_value < 17:
             print("Dealer hits...")
             self.hit(dealer)
@@ -57,8 +57,12 @@ class Game:
             print("Dealer busted!")
 
         self.check_win()
-            
+
+        self.end_game()
+
+    def end_game(self):
         self.game_over = True
+        self.player_turn_active = False
 
     def distribute_starting_cards(self):
         for i in range(2):
@@ -92,10 +96,10 @@ class Game:
 
             if isinstance(player, Player):
                 print("Dealer wins!")
-                self.game_over = True
             else:
                 print("Player wins!")
-                self.game_over = True
+
+            self.end_game()
 
     def stand(self, player):
         print(f"{player.name} decides to stand.")

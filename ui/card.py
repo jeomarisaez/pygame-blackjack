@@ -19,15 +19,6 @@ class CardUI:
         self.screen = screen
         self.card_width, self.card_height = self.CARD_SIZE
 
-        # self.screen_width = self.screen.get_width()   
-        # self.screen_height = self.screen.get_height()  
-        
-        # self.card_x_offset = self.card_width / 2
-        # self.card_y_offset = self.card_height / 2
-
-        # self.screen_center_x = self.screen_width * 0.5
-        # self.screen_center_y = self.screen_height * 0.5
-
         # fonts
         self.card_font = pygame.font.SysFont("Arial", 30)
         self.corner_font = pygame.font.SysFont("Arial", 18)

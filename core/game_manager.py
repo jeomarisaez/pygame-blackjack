@@ -16,10 +16,10 @@ class GameManager:
         self.running = True
 
         self.game = Game()
+        self.game.start()   
         self.game_ui = GameUI(self.screen)
 
         self.run()
-
 
     def run(self):
         surface = self.screen
@@ -45,13 +45,21 @@ class GameManager:
                 self.running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
+                
+                if self.game_ui.buttonUI.mouse_inside("new_game", event.pos):
+                        print(self.game.game_over)
+                        if self.game.game_over:
+                            self.restart_game()
+                            print("new game pressed")
+
                 if self.game.current_player == self.game.player:
-                    if self.game_ui.buttonUI.clicked("hit", event.pos):
+                    if self.game_ui.buttonUI.mouse_inside("hit", event.pos):
                         self.game.hit(self.game.current_player)
                         print("hit pressed")
-                    if self.game_ui.buttonUI.clicked("stand", event.pos):
+                    if self.game_ui.buttonUI.mouse_inside("stand", event.pos):
                         self.game.stand(self.game.current_player)
                         print("stand pressed")
+                    
 
             if event.type == pygame.KEYDOWN:
                 if self.game.current_player == self.game.player:
@@ -62,14 +70,17 @@ class GameManager:
                         self.game.stand(self.game.current_player)
                         print("stand pressed")
 
-        if self.game_ui.buttonUI.hovered("hit", mouse_pos):
+        # hover handling
+        if self.game_ui.buttonUI.mouse_inside("hit", mouse_pos):
             self.game_ui.buttonUI.hovered_button = "hit"
-
-        elif self.game_ui.buttonUI.hovered("stand", mouse_pos):
+        elif self.game_ui.buttonUI.mouse_inside("stand", mouse_pos):
             self.game_ui.buttonUI.hovered_button = "stand"
-
         else:
             self.game_ui.buttonUI.hovered_button = None
+
+    def restart_game(self):
+        self.game = Game()
+        self.game.start()
 
 
 

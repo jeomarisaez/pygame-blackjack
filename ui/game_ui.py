@@ -34,10 +34,10 @@ class GameUI:
         self.buttonUI.draw_button("hit", "HIT", 300, 550)
         self.buttonUI.draw_button("stand", "STAND", 500, 550)
         self.textUI.draw_counter(game.player.hand, 100, 450)
-        self.textUI.draw_counter(game.dealer.hand, 100, 100)
 
         if game.game_over:
-            self.buttonUI.draw_button("new_game", "New Game", 400, 400)
+            self.textUI.draw_counter(game.dealer.hand, 100, 100)
+            self.buttonUI.draw_button("new_game", "New Game", 400, 325)
             self.textUI.draw_bust(game.current_player)
 
 

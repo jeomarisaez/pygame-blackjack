@@ -17,6 +17,8 @@ class ButtonUI:
 
         # fonts
         self.font = pygame.font.SysFont("Arial", 30)
+        
+        self.hovered_button = None
 
     def draw_button(self, name, text, x, y):
         text_surf = self.font.render(text, True, self.WHITE)        
@@ -39,7 +41,7 @@ class ButtonUI:
 
         self.buttons[name] = rect
 
-        if self.hovered(name, mouse_pos):
+        if self.mouse_inside(name, mouse_pos):
             color = self.HOVER_BLUE
         else:
             color = self.BLUE
@@ -50,13 +52,11 @@ class ButtonUI:
 
         self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 
-    def clicked(self, name, pos):
-        return self.buttons[name].collidepoint(pos)
-
-    def hovered(self, name, pos):
+    def mouse_inside(self, name, pos):
         if name in self.buttons:
             return self.buttons[name].collidepoint(pos)
         return False
+
 
 
 
