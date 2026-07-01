@@ -62,16 +62,15 @@ class GameManager:
                         if self.game.game_over:
                             self.restart_game()
                             print("new game pressed")
-
-                if self.game.current_player == self.game.player:
-                    if self.game_ui.buttonUI.mouse_inside("hit", event.pos):
-                        self.game.hit(self.game.current_player)
-                        print("hit pressed")
-                    if self.game_ui.buttonUI.mouse_inside("stand", event.pos):
-                        self.game.stand(self.game.current_player)
-                        print("stand pressed")
+                if not self.game.game_over:
+                    if self.game.current_player == self.game.player:
+                        if self.game_ui.buttonUI.mouse_inside("hit", event.pos):
+                            self.game.hit(self.game.current_player)
+                            print("hit pressed")
+                        if self.game_ui.buttonUI.mouse_inside("stand", event.pos):
+                            self.game.stand(self.game.current_player)
+                            print("stand pressed")
                     
-
             if event.type == pygame.KEYDOWN:
                 if self.game.current_player == self.game.player:
                     if event.key == pygame.K_1:
