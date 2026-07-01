@@ -9,13 +9,13 @@ class TextUI:
 
     def __init__(self, screen):
         self.screen = screen
-        self.score_font = pygame.font.SysFont("Arial", 30)
+        self.font = pygame.font.SysFont("Arial", 30)
 
     def draw_counter(self, hand, x, y):
         rect = pygame.Rect(0, 0, *self.COUNTER_SIZE)
         rect.center = (x, y)
 
-        text_surf = self.score_font.render(str(hand.get_value), True, self.WHITE)
+        text_surf = self.font.render(str(hand.get_value), True, self.WHITE)
 
         self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 
@@ -27,6 +27,17 @@ class TextUI:
         rect.center = (screen_rect.centerx, screen_rect.centery - 50)
 
         text_surf = self.score_font.render(text, True, self.WHITE)
+
+        self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
+
+    def draw_result(self, result):
+        screen_rect = self.screen.get_rect()
+
+        text = result
+        rect = pygame.Rect(0, 0, *self.COUNTER_SIZE)
+        rect.center = (screen_rect.centerx, screen_rect.centery - 50)
+
+        text_surf = self.font.render(text, True, self.WHITE)
 
         self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 

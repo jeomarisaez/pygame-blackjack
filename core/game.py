@@ -16,6 +16,7 @@ class Game:
 
         self.current_player = None
         self.player_turn_active = False
+        self.result_text = ""
 
     def start(self):
         self.set_up_game()
@@ -54,15 +55,19 @@ class Game:
             self.print_hands(dealer.hand.cards)
 
         if dealer.hand.get_value > 21:
-            print("Dealer busted!")
-
-        self.check_win()
+            self.result_text = f"{dealer.name} busted! Player wins!"
+        else:
+            self.result_text = f"{self.check_win()} wins!"
 
         self.end_game()
 
     def end_game(self):
         self.game_over = True
         self.player_turn_active = False
+        self.winner = self.check_win()
+
+        if self.result_text == "":
+            self.result_text = f"{self.winner} wins!"
 
     def distribute_starting_cards(self):
         for i in range(2):
@@ -92,14 +97,15 @@ class Game:
         self.print_hands(player.hand.cards)
 
         if player.hand.get_value > 21:
-            print(f"{player.name} busted!")
+            self.result_text = f"{player.name} busted!"
 
             if isinstance(player, Player):
-                print("Dealer wins!")
+                self.result_text += " Dealer wins!"
             else:
-                print("Player wins!")
+                self.result_text += " Player wins!"
 
             self.end_game()
+
 
     def stand(self, player):
         print(f"{player.name} decides to stand.")
@@ -111,10 +117,20 @@ class Game:
         self.play_turn()
 
     def check_win(self):
-        highest_score = 0
-        for player in self.player_list:
-            if highest_score < player.hand.get_value:
-                current_winner = player.name
-                highest_score = player.hand.get_value
-        return current_winner
+        player_score = self.player.hand.get_value
+        dealer_score = self.dealer.hand.get_value
+
+        if player_score > 21:
+            return self.dealer.name
+
+        if dealer_score > 21:
+            return self.player.name
+
+        if player_score > dealer_score:
+            return self.player.name
+
+        if dealer_score > player_score:
+            return self.dealer.name
+
+        return "Tie"
 

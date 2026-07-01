@@ -38,7 +38,7 @@ class GameUI:
         
         if game.game_over:
             self.buttonUI.draw_button("new_game", "New Game", 400, 325)
-            self.textUI.draw_bust(game.current_player)
+            self.textUI.draw_result(game.result_text)
 
 
 
