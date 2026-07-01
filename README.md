@@ -10,12 +10,12 @@ practice OOP principles.
 - Restart game functionality
 
 ## FUTURE IMPROVEMENTS
-[ ] Betting and money system
-[ ] Main Menu
-[ ] Double or nothing
-[ ] Sound effects
-[ ] Casino-like UI
-[ ] Statistics
+- [ ] Betting and money system
+- [ ] Main Menu
+- [ ] Double or nothing
+- [ ] Sound effects
+- [ ] Casino-like UI
+- [ ] Statistics
 
 ## REQUIREMENTS
 - Python 3.x
