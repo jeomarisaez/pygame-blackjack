@@ -1,20 +1,30 @@
 # PYGAME BLACKJACK
-This is a simple Blackjack Game project made using pygame. I made this to practice python and 
+This is a simple Blackjack Game project made using pygame. I made this to practice Python and 
 practice OOP principles. 
 
-# FEATURES
-- Basic blackjack game loop
-- - Hit and Stand
-- - Player and Dealer
-- Pygame
-- - Handles the user interface and decorations
-- - Also handles the inputs and hover functions
+## FEATURES
+- Classic Blackjack gameplay
+- Player vs. Dealer
+- Hit and Stand actions
+- Button hover effects
+- Restart game functionality
 
-# INSTALLATION
-Make sure that pygame is installed
+## FUTURE IMPROVEMENTS
+[ ] Betting and money system
+[ ] Main Menu
+[ ] Double or nothing
+[ ] Sound effects
+[ ] Casino-like UI
+[ ] Statistics
+
+## REQUIREMENTS
+- Python 3.x
+- Pygame
+
+## INSTALLATION
 Clone the repo
 ```bash
-git clone <your-repo-url>
+git clone <https://github.com/jeomarisaez/pygame-blackjack.git>
 cd blackjack
 ```
 Install dependencies
