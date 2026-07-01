@@ -1,13 +1,16 @@
 from .game import Game
 from ui.game_ui import GameUI
+import os
 import pygame
-import sys
 
 class GameManager:
     BACKGROUND = (40, 40, 50)
 
     def __init__(self):
         pygame.init()
+
+        icon = pygame.image.load(os.path.join("assets", "penguin.png"))
+        pygame.display.set_icon(icon)
 
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption("Penguin's Blackjack")
@@ -35,7 +38,6 @@ class GameManager:
             pygame.display.flip()
 
         pygame.quit()
-        # sys.exit()
 
     def handle_inputs(self):
         mouse_pos = pygame.mouse.get_pos()
