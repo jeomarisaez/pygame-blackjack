@@ -24,7 +24,7 @@ practice OOP principles.
 ## INSTALLATION
 Clone the repo
 ```bash
-git clone <https://github.com/jeomarisaez/pygame-blackjack.git>
+git clone https://github.com/jeomarisaez/pygame-blackjack.git
 cd blackjack
 ```
 Install dependencies
