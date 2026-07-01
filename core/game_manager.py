@@ -25,24 +25,11 @@ class GameManager:
         surface = self.screen
 
         while self.running:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.running = False
-                if event.type == pygame.MOUSEBUTTONDOWN:
-                    if self.game.current_player == self.game.player:
-                        if self.game_ui.buttonUI.clicked("hit", event.pos):
-                            self.game.hit(self.game.current_player)
-                            print("hit pressed")
-                        if self.game_ui.buttonUI.clicked("stand", event.pos):
-                            self.game.stand(self.game.current_player)
-                            print("stand pressed")
-
+            self.handle_inputs()
 
             self.screen.fill(self.BACKGROUND)
 
             self.game_ui.draw(self.game)
-
-
             
             # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 1.5)
             # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 0.5)
@@ -53,4 +40,27 @@ class GameManager:
 
         pygame.quit()
         # sys.exit()
+
+    def handle_inputs(self):
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    self.running = False
+
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if self.game.current_player == self.game.player:
+                        if self.game_ui.buttonUI.clicked("hit", event.pos):
+                            self.game.hit(self.game.current_player)
+                            print("hit pressed")
+                        if self.game_ui.buttonUI.clicked("stand", event.pos):
+                            self.game.stand(self.game.current_player)
+                            print("stand pressed")
+
+                if event.type == pygame.KEYDOWN:
+                    if self.game.current_player == self.game.player:
+                        if event.key == pygame.K_1:
+                            self.game.hit(self.game.current_player)
+                            print("hit pressed")
+                        if event.key == pygame.K_2:
+                            self.game.stand(self.game.current_player)
+                            print("stand pressed")
 
