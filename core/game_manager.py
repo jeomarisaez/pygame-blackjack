@@ -56,35 +56,43 @@ class GameManager:
                 self.running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-
                 if self.game_ui.buttonUI.mouse_inside("new_game", event.pos):
-                        print(self.game.game_over)
-                        if self.game.game_over:
-                            self.restart_game()
-                            print("new game pressed")
+                    if self.game.game_over:
+                        self.restart_game()
+                        print("new game pressed")
+
                 if not self.game.game_over:
                     if self.game.current_player == self.game.player:
                         if self.game_ui.buttonUI.mouse_inside("hit", event.pos):
                             self.game.hit(self.game.current_player)
                             print("hit pressed")
+
                         if self.game_ui.buttonUI.mouse_inside("stand", event.pos):
                             self.game.stand(self.game.current_player)
                             print("stand pressed")
                     
             if event.type == pygame.KEYDOWN:
                 if self.game.current_player == self.game.player:
-                    if event.key == pygame.K_1:
-                        self.game.hit(self.game.current_player)
-                        print("hit pressed")
-                    if event.key == pygame.K_2:
-                        self.game.stand(self.game.current_player)
-                        print("stand pressed")
+                    if event.key == pygame.K_3:
+                        self.restart_game()
+                        print("new game pressed")
+
+                    if not self.game.game_over:
+                        if event.key == pygame.K_1:
+                            self.game.hit(self.game.current_player)
+                            print("hit pressed")
+
+                        if event.key == pygame.K_2:
+                            self.game.stand(self.game.current_player)
+                            print("stand pressed")
 
         # hover handling
         if self.game_ui.buttonUI.mouse_inside("hit", mouse_pos):
             self.game_ui.buttonUI.hovered_button = "hit"
+
         elif self.game_ui.buttonUI.mouse_inside("stand", mouse_pos):
             self.game_ui.buttonUI.hovered_button = "stand"
+
         else:
             self.game_ui.buttonUI.hovered_button = None
 
