@@ -37,6 +37,7 @@ class GameUI:
         self.textUI.draw_counter(game.dealer.hand, 100, 100)
 
         if game.game_over:
+            self.buttonUI.draw_button("new_game", "New Game", 400, 400)
             self.textUI.draw_bust(game.current_player)
 
 

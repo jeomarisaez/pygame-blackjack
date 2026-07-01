@@ -19,12 +19,25 @@ class ButtonUI:
         self.font = pygame.font.SysFont("Arial", 30)
 
     def draw_button(self, name, text, x, y):
-        rect = pygame.Rect(0, 0, *self.BUTTON_SIZE)
+        text_surf = self.font.render(text, True, self.WHITE)        
+
+        # buttons that should have fixed size
+        fixed_buttons = ["hit", "stand"]
+
+        if name in fixed_buttons:
+            width, height = self.BUTTON_SIZE
+        else:
+            padding_x = 30
+            padding_y = 20
+            width = text_surf.get_width() + padding_x
+            height = text_surf.get_height() + padding_y
+
+        mouse_pos = pygame.mouse.get_pos()
+
+        rect = pygame.Rect(0, 0, width, height)
         rect.center = (x, y)
 
         self.buttons[name] = rect
-
-        mouse_pos = pygame.mouse.get_pos()
 
         if self.hovered(name, mouse_pos):
             color = self.HOVER_BLUE
@@ -34,7 +47,6 @@ class ButtonUI:
         pygame.draw.rect(self.screen, color, rect, border_radius=12)  
         pygame.draw.rect(self.screen, self.BLACK, rect, 2, border_radius=12)  
 
-        text_surf = self.font.render(text, True, self.WHITE)
 
         self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 
