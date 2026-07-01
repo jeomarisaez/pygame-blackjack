@@ -10,7 +10,7 @@ class GameManager:
         pygame.init()
 
         self.screen = pygame.display.set_mode((800, 600))
-        pygame.display.set_caption("Card Game")
+        pygame.display.set_caption("Penguin's Blackjack")
 
         self.clock = pygame.time.Clock()
         self.running = True
@@ -45,7 +45,7 @@ class GameManager:
                 self.running = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                
+
                 if self.game_ui.buttonUI.mouse_inside("new_game", event.pos):
                         print(self.game.game_over)
                         if self.game.game_over:

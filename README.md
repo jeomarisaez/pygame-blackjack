@@ -10,3 +10,18 @@ practice OOP principles.
 - - Handles the user interface and decorations
 - - Also handles the inputs and hover functions
 
+# INSTALLATION
+Make sure that pygame is installed
+Clone the repo
+```bash
+git clone <your-repo-url>
+cd blackjack
+```
+Install dependencies
+```bash
+pip install -r requirements.txt
+```
+Run the game
+```
+python main.py
+```
