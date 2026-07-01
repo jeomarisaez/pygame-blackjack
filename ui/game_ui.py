@@ -1,7 +1,7 @@
 import pygame
 from .card import *
 from .button import *
-from .counter import *
+from .text import *
 
 class GameUI:
     # colors
@@ -20,7 +20,7 @@ class GameUI:
         self.card_width, self.card_height = self.CARD_SIZE
         self.buttonUI = ButtonUI(self.screen)
         self.cardUI = CardUI(self.screen)
-        self.counterUI = CounterUI(self.screen)
+        self.textUI = TextUI(self.screen)
 
         # fonts
         self.card_font = pygame.font.SysFont("Arial", 30)
@@ -33,8 +33,11 @@ class GameUI:
         self.cardUI.draw_hand(game.dealer.hand.cards, 250, 100)
         self.buttonUI.draw_button("hit", "HIT", 300, 550)
         self.buttonUI.draw_button("stand", "STAND", 500, 550)
-        self.counterUI.draw_counter(game.player.hand, 100, 450)
-        self.counterUI.draw_counter(game.dealer.hand, 100, 100)
+        self.textUI.draw_counter(game.player.hand, 100, 450)
+        self.textUI.draw_counter(game.dealer.hand, 100, 100)
+
+        if game.game_over:
+            self.textUI.draw_bust(game.player)
 
 
 

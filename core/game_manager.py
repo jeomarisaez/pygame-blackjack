@@ -31,10 +31,6 @@ class GameManager:
 
             self.game_ui.draw(self.game)
             
-            # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 1.5)
-            # self.game_ui.draw_hand_slot(self.game_ui.screen_center_y * 0.5)
-            # self.game_ui.draw_card("A", 1, (self.game_ui.screen_center_x - self.game_ui.card_x_offset) - 50, self.game_ui.screen_center_y * 1.5 - self.game_ui.card_y_offset) 
-            # self.game_ui.draw_card("B", 2, (self.game_ui.screen_center_x - self.game_ui.card_x_offset) + 50, self.game_ui.screen_center_y * 1.5 - self.game_ui.card_y_offset)
             # # updates screen so that all blipped elements show
             pygame.display.flip()
 

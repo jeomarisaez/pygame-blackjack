@@ -83,6 +83,20 @@ class Game:
     def hit(self, player):
         self.give_card(player)
 
+        print(f"{player.name}'s hand:")
+        self.show_hand_value(player.hand)
+        self.print_hands(player.hand.cards)
+
+        if player.hand.get_value > 21:
+            print(f"{player.name} busted!")
+
+            if isinstance(player, Player):
+                print("Dealer wins!")
+                self.game_over = True
+            else:
+                print("Player wins!")
+                self.game_over = True
+
     def stand(self, player):
         print(f"{player.name} decides to stand.")
 

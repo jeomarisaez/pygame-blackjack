@@ -10,6 +10,8 @@ class CardUI:
     RED = (255,0,0)
     BLUE = (50,50,255)
 
+
+    SLOT_SIZE = (500, 120)
     CARD_SIZE = (60, 90)
 
     def __init__(self, screen):
@@ -40,10 +42,10 @@ class CardUI:
             x += 70
 
 
-    def draw_hand_slot(self, y, width=500, height=120):
+    def draw_hand_slot(self, y):
         screen_rect = self.screen.get_rect()
 
-        rect = pygame.Rect(0, 0, width, height)
+        rect = pygame.Rect(0, 0, *self.SLOT_SIZE)
         rect.center = (screen_rect.centerx, y)
 
         pygame.draw.rect(
