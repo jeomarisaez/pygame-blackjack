@@ -1,7 +1,16 @@
 from .game import Game
 from ui.game_ui import GameUI
 import os
+import sys
 import pygame
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except AttributeError:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
 
 class GameManager:
     BACKGROUND = (40, 40, 50)
@@ -9,7 +18,7 @@ class GameManager:
     def __init__(self):
         pygame.init()
 
-        icon = pygame.image.load(os.path.join("assets", "penguin.png"))
+        icon = pygame.image.load(resource_path("assets/penguin.png"))
         pygame.display.set_icon(icon)
 
         self.screen = pygame.display.set_mode((800, 600))
