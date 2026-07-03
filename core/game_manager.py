@@ -4,7 +4,8 @@ import os
 import sys
 import pygame
 
-def resource_path(relative_path):
+# helper function for pyinstaller lone executable
+def resource_path(relative_path): 
     try:
         base_path = sys._MEIPASS
     except AttributeError:
@@ -30,6 +31,7 @@ class GameManager:
         self.game = Game()
         self.game.start()   
         self.game_ui = GameUI(self.screen)
+        self.win_counter = 0
 
         self.run()
 
@@ -42,6 +44,12 @@ class GameManager:
             self.screen.fill(self.BACKGROUND)
 
             self.game_ui.draw(self.game)
+
+            if self.game.winner == self.game.player.name:
+                self.win_counter += 1
+                self.game.winner = "" # so that the counter does not count indefinitely
+
+            self.game_ui.textUI.draw_win_counter(self.win_counter, 100, 300)
             
             # # updates screen so that all blipped elements show
             pygame.display.flip()

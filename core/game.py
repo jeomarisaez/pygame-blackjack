@@ -17,6 +17,7 @@ class Game:
         self.current_player = None
         self.player_turn_active = False
         self.result_text = ""
+        self.winner = ""
 
     def start(self):
         self.set_up_game()
@@ -56,6 +57,8 @@ class Game:
 
         if dealer.hand.get_value > 21:
             self.result_text = f"{dealer.name} busted! Player wins!"
+        elif self.check_win() == "Tie":
+            self.result_text = "Tie"
         else:
             self.result_text = f"{self.check_win()} wins!"
 

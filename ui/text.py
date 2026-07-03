@@ -3,6 +3,7 @@ import pygame
 class TextUI:
     COUNTER_SIZE = (100, 50)
     BUST_SIZE = (100, 50)
+    TEXT_SIZE = (100, 50)
     WHITE = (255,255,255)
     BLACK = (0,0,0)
     BLUE = (50,50,255)
@@ -41,6 +42,23 @@ class TextUI:
 
         self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 
+    def draw_text(self, text):
+        screen_rect = self.screen.get_rect()
+
+        rect = pygame.Rect(0, 0, *self.TEXT_SIZE)
+        rect.center = (screen_rect.centerx * 0.2, screen_rect.centery - 50) 
+
+        text_surf = self.font.render(text, True, self.WHITE)
+
+        self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
+
+    def draw_win_counter(self, score, x, y):
+        rect = pygame.Rect(0, 0, *self.COUNTER_SIZE)
+        rect.center = (x, y)
+
+        text_surf = self.font.render(str(score), True, self.WHITE)
+
+        self.screen.blit(text_surf, text_surf.get_rect(center=rect.center))
 
 
         

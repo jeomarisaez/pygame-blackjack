@@ -35,6 +35,7 @@ class GameUI:
         self.buttonUI.draw_button("stand", "STAND", 500, 550)
         self.textUI.draw_counter(game.player.hand, 100, 450)
         self.textUI.draw_counter(game.dealer.hand, 100, 100)
+        self.textUI.draw_text("Wins: ")
         
         if game.game_over:
             self.buttonUI.draw_button("new_game", "New Game", 400, 325)
